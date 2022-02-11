@@ -11,9 +11,19 @@ class CarpetaInLine(admin.TabularInline):
     def link(self, obj):
         firm_url = '/admin/arxius/carpeta/'+str(obj.id)+'/change/'
         return format_html("<a href='{url}'>{nom}</a>", url=firm_url, nom=obj.nom)
+
+class ArxiusInLine(admin.TabularInline):
+    model = Arxiu
+    extra = 0
+    exclude = ("nom", )
+    readonly_fields = ["arxiu", "data_creacio", "creador"]
+    def arxiu(self, obj):
+        firm_url = '/admin/arxius/arxiu/' + str(obj.id)
+        return format_html("<a href='{url}'>{nom}</a>", url=firm_url, nom=obj.nom)
+
 class CarpetaAdmin(admin.ModelAdmin):
     exclude = ()
-    inlines = [CarpetaInLine, ]
+    inlines = [CarpetaInLine, ArxiusInLine]
     def get_queryset(self, obj):
         return Carpeta.objects.filter(carpeta_pare = None)
 
