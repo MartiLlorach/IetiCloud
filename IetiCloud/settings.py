@@ -1,3 +1,6 @@
+# importem django_heroku a l'inici de l'arxiu
+import django_heroku
+ 
 """
 Django settings for IetiCloud project.
 
@@ -124,3 +127,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# activem Django-Heroku al final de l'arxiu
+django_heroku.settings(locals())
+ 
+# si dona error ssl https://devcenter.heroku.com/articles/getting-started-with-python#set-up
+#del DATABASES['default']['OPTIONS']['sslmode']

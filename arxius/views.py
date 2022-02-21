@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(req):
-	return HttpResponse("hola")
+	return HttpResponse("<h1>IetiCloud, el millor Cloud per a tu!</h1>")
